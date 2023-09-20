@@ -1,6 +1,7 @@
 // The MIT License
 //
 // Copyright (c) 2014 Gwendal Roué
+// Copyright (c) 2019 Houdah Software s.à r.l.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -21,51 +22,13 @@
 // THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
-#import "GRMustacheAvailabilityMacros.h"
+#import "GRMustacheRendering_private.h"
+#import "GRMustacheFilter_private.h"
+#import "GRMustacheTagDelegate.h"
 
 
-/**
- * The codes of a GRMustache-generated NSError
- *
- * @since v1.0
- */
-typedef NS_ENUM(NSInteger, GRMustacheErrorCode) {
-    /**
-     * The error code for parse errors.
-     *
-     * @since v1.0
-     */
-    GRMustacheErrorCodeParseError AVAILABLE_GRMUSTACHE_VERSION_7_0_AND_LATER,
-    
-    /**
-     * The error code for missing templates and partials.
-     *
-     * @since v1.0
-     */
-    GRMustacheErrorCodeTemplateNotFound AVAILABLE_GRMUSTACHE_VERSION_7_0_AND_LATER,
-    
-    /**
-     * The error code for rendering errors.
-     *
-     * @since v6.3
-     */
-    GRMustacheErrorCodeRenderingError AVAILABLE_GRMUSTACHE_VERSION_7_0_AND_LATER,
+// =============================================================================
+#pragma mark - GRMustacheCSVEscapeFilter
 
-} AVAILABLE_GRMUSTACHE_VERSION_7_0_AND_LATER;
-
-
-/**
- * The domain of a GRMustache-generated NSError
- *
- * @since v1.0
- */
-extern NSString *const GRMustacheErrorDomain AVAILABLE_GRMUSTACHE_VERSION_7_0_AND_LATER;
-
-
-/**
- * The name of exceptions raised by GRMustache when rendering a template.
- *
- * @since v5.1
- */
-extern NSString *const GRMustacheRenderingException AVAILABLE_GRMUSTACHE_VERSION_7_0_AND_LATER;
-
+@interface GRMustacheCSVEscapeFilter: NSObject<GRMustacheFilter, GRMustacheRendering, GRMustacheTagDelegate>
+@end

@@ -28,6 +28,7 @@
 #import "GRMustacheJavascriptLibrary_private.h"
 #import "GRMustacheHTMLLibrary_private.h"
 #import "GRMustacheURLLibrary_private.h"
+#import "GRMustacheCSVLibrary_private.h"
 #import "GRMustacheEachFilter_private.h"
 #import "GRMustacheLocalizer.h"
 
@@ -95,6 +96,14 @@
                              // {{# URL.escape }}...{{/}}
                              [[[GRMustacheURLEscapeFilter alloc] init] autorelease], @"escape",
                              nil], @"URL",
+
+							[NSDictionary dictionaryWithObjectsAndKeys:
+
+							// {{ CSV.escape(value) }}
+							// {{# CSV.escape }}...{{/}}
+							[[[GRMustacheCSVEscapeFilter alloc] init] autorelease], @"escape",
+							nil], @"CSV",
+
                             nil] retain];
     });
     
