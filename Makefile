@@ -1,9 +1,16 @@
 all: lib/libGRMustache7-iOS.a lib/libGRMustache7-MacOS.a include/GRMustache.h Reference
 
-lib/libGRMustache7-iOS.a: build/GRMustache7-iOS/Release-iphoneos/libGRMustache7-iOS.a build/GRMustache7-iphonesimulator/Release-iphonesimulator/libGRMustache7-iOS.a build/GRMustache7-iphonesimulator-x86_64/Release-iphonesimulator/libGRMustache7-iOS.a
+# lib/libGRMustache7-iOS.a: build/GRMustache7-iOS/Release-iphoneos/libGRMustache7-iOS.a build/GRMustache7-iphonesimulator/Release-iphonesimulator/libGRMustache7-iOS.a build/GRMustache7-iphonesimulator-x86_64/Release-iphonesimulator/libGRMustache7-iOS.a
+# 	mkdir -p lib
+# 	lipo -create \
+# 	  "build/GRMustache7-iphonesimulator/Release-iphonesimulator/libGRMustache7-iOS.a" \
+# 	  "build/GRMustache7-iphonesimulator-x86_64/Release-iphonesimulator/libGRMustache7-iOS.a" \
+# 	  "build/GRMustache7-iOS/Release-iphoneos/libGRMustache7-iOS.a" \
+# 	  -output "lib/libGRMustache7-iOS.a"
+
+lib/libGRMustache7-iOS.a: build/GRMustache7-iOS/Release-iphoneos/libGRMustache7-iOS.a build/GRMustache7-iphonesimulator-x86_64/Release-iphonesimulator/libGRMustache7-iOS.a
 	mkdir -p lib
 	lipo -create \
-	  "build/GRMustache7-iphonesimulator/Release-iphonesimulator/libGRMustache7-iOS.a" \
 	  "build/GRMustache7-iphonesimulator-x86_64/Release-iphonesimulator/libGRMustache7-iOS.a" \
 	  "build/GRMustache7-iOS/Release-iphoneos/libGRMustache7-iOS.a" \
 	  -output "lib/libGRMustache7-iOS.a"
@@ -18,13 +25,13 @@ build/GRMustache7-iOS/Release-iphoneos/libGRMustache7-iOS.a:
 	           -configuration Release \
 	           build SYMROOT=../build/GRMustache7-iOS
 
-build/GRMustache7-iphonesimulator/Release-iphonesimulator/libGRMustache7-iOS.a:
-	xcodebuild -project src/GRMustache.xcodeproj \
-	           -target GRMustache7-iOS \
-	           -configuration Release \
-	           -sdk iphonesimulator \
-	           -arch "i386" \
-	           build SYMROOT=../build/GRMustache7-iphonesimulator
+# build/GRMustache7-iphonesimulator/Release-iphonesimulator/libGRMustache7-iOS.a:
+# 	xcodebuild -project src/GRMustache.xcodeproj \
+# 	           -target GRMustache7-iOS \
+# 	           -configuration Release \
+# 	           -sdk iphonesimulator \
+# 	           -arch "i386" \
+# 	           build SYMROOT=../build/GRMustache7-iphonesimulator
 
 build/GRMustache7-iphonesimulator-x86_64/Release-iphonesimulator/libGRMustache7-iOS.a:
 	xcodebuild -project src/GRMustache.xcodeproj \
